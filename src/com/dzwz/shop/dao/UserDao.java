@@ -6,5 +6,6 @@ import com.dzwz.shop.model.User;
 public interface UserDao extends BaseDao<User> {
 	
 	public User QueryUser(User user);
+	
 
 }

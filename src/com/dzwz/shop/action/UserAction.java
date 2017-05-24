@@ -55,6 +55,26 @@ public class UserAction extends BaseAction<User> {
 	    }
 	}
 	/**
+	 * 登录
+	 * @return
+	 */
+	public String register(){
+		//进行登录的判断
+	    //User  user= userService.login(model);
+	    /*if(user!=null){
+	    	session.put("userInfo", user);
+	    	if(session.get("goURL")==null){
+	    		return "index";
+	    	}else{
+	    		return "goURL";
+	    	}
+	    }else{
+	    	request.put("error", "登录失败");
+	    	return "loginFa";
+	    }*/
+		return "index";
+	}
+	/**
 	 * 登出
 	 * @return
 	 */

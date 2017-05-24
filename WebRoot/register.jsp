@@ -84,22 +84,22 @@
     <div class="wrapper">
      <!-- 引入头部文件 -->
      <jsp:include page="/public/head.jsp"></jsp:include>
-     <div class="reg">
-       <form id="msform" action="http://www.baidu.com" method="post">
-       <ul id="progressbar">
+     <div class="reg" style="padding-top:20px;">
+       <form id="msform" action="user_register.action" method="post">
+       <!-- <ul id="progressbar">
 		<li class="active">第一步:用户信息</li>
 		<li>第三步：注册成功</li>
-	</ul>
+	</ul> -->
 	   <fieldset id="fie-1">
-			<p>用户名:</p><input type="text" name="login" placeholder="user name" /> 
+			<p>用户名:</p><input type="text" value="marven" name="login" placeholder="user name" /> 
 		
-			<p>昵称:</p><input type="text" name="name" placeholder="user name" /> 
+			<p>昵称:</p><input type="text" value="xiaoming" name="name" placeholder="user name" /> 
 		
-			<p>密码:</p><input type="password" name="pwd" id="pwd" placeholder="Password" /> 
+			<p>密码:</p><input type="password" value="123456" name="pwd" id="pwd" placeholder="Password" /> 
 			
-			<p>再次输入密码:</p><input type="password" name="cpwd" placeholder="Confirm Password" />
+			<p>再次输入密码:</p><input type="password" value="123456" name="cpwd" placeholder="Confirm Password" />
 		
-			<p>邮箱:</p><input type="email" name="email" placeholder="Email" />
+			<p>邮箱:</p><input type="email" value="1637077309@qq.com" name="email" placeholder="Email" />
 			
 			<input type="submit" name="next" class="next action-button" id="next-2" value="注册" />
 	   </fieldset>

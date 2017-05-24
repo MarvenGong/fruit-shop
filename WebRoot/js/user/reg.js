@@ -2,7 +2,13 @@
 			/************************验证 start*******************************/
 			$("#msform").validate({
 				debug:true,
-				
+				submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+                    form.submit();   //提交表单  
+                    /*$.ajax({
+                    	url:"/register.action",
+                    	data:
+                    })*/
+                }, 
 				rules:{
 					phone:{
 						required:true					

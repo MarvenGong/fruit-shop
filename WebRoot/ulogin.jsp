@@ -32,7 +32,7 @@
 					</div>
 					<div>
 						<input type="submit" value="登陆" style="width:60px;height:30px" />
-						<input type="button" value="注册" onclick="window.open('${shop}/index.jsp','_self')" style="width:60px;height:30px" />
+						<input type="button" value="注册" onclick="window.open('${shop}/register.jsp','_self')" style="width:60px;height:30px" />
 					</div>
 			   </form>
 			   <div style="clear:both"></div>

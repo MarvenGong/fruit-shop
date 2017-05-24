@@ -16,8 +16,4 @@ public  class UserDaoImpl<Uset> extends BaseDaoIpml<User> implements UserDao {
 		criteria.add(Restrictions.eq("pwd", user.getPwd()));
 		return (User) criteria.uniqueResult();
 	}
-
-	
-	
-
 }

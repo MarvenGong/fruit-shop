@@ -67,6 +67,7 @@
 					\[\d+]\.pwd,\[\d+]\.phone,\[\d+]\.money
 				</param>
     		</result>
+    	
     	</action>
     	<!-- 管理用户 -->
     	<action name="account_*" class="accountAction" method="{1}">
@@ -77,7 +78,11 @@
 				</param>
     		</result>
     	</action>
-    	
+    	<!-- register -->
+    	<!-- <action name="register.action" class="userAction" method="{1}">
+    		<result name="goURL">${#session.goURL}</result>
+    		
+    	</action> -->
     		
      </package>
     	
