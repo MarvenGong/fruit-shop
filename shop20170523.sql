@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : LocalHost
-Source Server Version : 50620
+Source Server         : localhost_3306
+Source Server Version : 50713
 Source Host           : localhost:3306
 Source Database       : shop
 
 Target Server Type    : MYSQL
-Target Server Version : 50620
+Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2017-03-18 20:05:29
+Date: 2017-05-23 22:18:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for account
+-- Table structure for `account`
 -- ----------------------------
 DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
@@ -33,7 +33,7 @@ CREATE TABLE `account` (
 INSERT INTO `account` VALUES ('1', 'user', 'user', '1');
 
 -- ----------------------------
--- Table structure for category
+-- Table structure for `category`
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
@@ -44,17 +44,18 @@ CREATE TABLE `category` (
   PRIMARY KEY (`id`),
   KEY `FK302BCFE5B84BD34` (`aid`),
   CONSTRAINT `FK302BCFE5B84BD34` FOREIGN KEY (`aid`) REFERENCES `account` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '热门单品', '1', '1');
-INSERT INTO `category` VALUES ('2', '女装', '1', null);
-INSERT INTO `category` VALUES ('3', '衬衣', '1', null);
+INSERT INTO `category` VALUES ('1', '热卖', '1', '1');
+INSERT INTO `category` VALUES ('4', '进口水果', '1', '1');
+INSERT INTO `category` VALUES ('5', '瓜类', '1', '1');
+INSERT INTO `category` VALUES ('6', '夏季水果', '1', null);
 
 -- ----------------------------
--- Table structure for forder
+-- Table structure for `forder`
 -- ----------------------------
 DROP TABLE IF EXISTS `forder`;
 CREATE TABLE `forder` (
@@ -69,18 +70,18 @@ CREATE TABLE `forder` (
   `address` varchar(50) DEFAULT NULL,
   `user` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of forder
 -- ----------------------------
-INSERT INTO `forder` VALUES ('1', '1', 'user', '1234567890', '输入留言信息', '79.00', null, '', 'test', '');
-INSERT INTO `forder` VALUES ('4', '1', 'user', '15555555555', '尽快发乎', '76.00', null, '266666', 'test', 'buyer');
-INSERT INTO `forder` VALUES ('5', '1', 'user', '', '输入留言信息', '79.00', null, '', 'test', 'buyer');
-INSERT INTO `forder` VALUES ('6', '1', 'user', 'ss', '输入留言信息', '99.00', null, '222222', 'test', 'buyer');
+INSERT INTO `forder` VALUES ('7', '1', 'user', '123', 'jinkuai ', '10.00', null, '123', 'test', 'buyer');
+INSERT INTO `forder` VALUES ('8', '1', 'user', '123456', '尽快发货', '20.00', null, '721100', 'test', 'buyer');
+INSERT INTO `forder` VALUES ('9', '1', 'user', '', '输入留言信息', '20.00', null, '', 'test', 'buyer');
+INSERT INTO `forder` VALUES ('10', '1', 'user', '', '输入留言信息', '20.00', null, '', 'test', 'buyer');
 
 -- ----------------------------
--- Table structure for product
+-- Table structure for `product`
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
@@ -97,17 +98,23 @@ CREATE TABLE `product` (
   PRIMARY KEY (`id`),
   KEY `FKED8DCCEF974BBD51` (`cid`),
   CONSTRAINT `FKED8DCCEF974BBD51` FOREIGN KEY (`cid`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', '夏季新品长裙', '76', 'pr_l_1.jpg', '印花 纯棉', '1', '2017-02-18 08:07:51', '', '', '1');
-INSERT INTO `product` VALUES ('2', '夏季新品长裙', '99', 'pr_l_2.jpg', '印花 纯棉', '1', '2017-02-18 08:07:51', '', '', '1');
-INSERT INTO `product` VALUES ('3', '夏季新品长裙', '79', 'pr_l_3.jpg', '印花 纯棉', '1', '2017-02-18 08:07:51', '', '', '1');
+INSERT INTO `product` VALUES ('4', '西瓜', '10', '0690134a-cf56-48df-94f5-a711d77697f4.jpg', '甜', '解渴', null, '', '', '5');
+INSERT INTO `product` VALUES ('7', '木瓜', '9.9', '7149e394-507b-4879-a975-5c6d5da62b0a.jpg', '有益身体健康', '好吃！！！', null, '', '', '5');
+INSERT INTO `product` VALUES ('8', '草莓', '20', '650280bf-b008-4716-b783-250ffccca2b9.jpg', '美颜', '好吃', null, '', '', '1');
+INSERT INTO `product` VALUES ('9', '菠萝', '12', '7c59ac25-690d-45a9-bd82-6a8279743f9c.jpg', '季节宠儿', '酸甜好吃。', null, '', '', '1');
+INSERT INTO `product` VALUES ('10', '龙眼', '66', '327684aa-b6ba-4b6d-b2c1-92a076a87401.jpg', '进口的哦', '有益于身体健康', null, '', '', '4');
+INSERT INTO `product` VALUES ('11', '山竹', '69', '985cdc82-7ec1-4828-a7d0-30ef9bafc7bf.jpg', '好吃', '清脆可口', null, '', '', '4');
+INSERT INTO `product` VALUES ('12', '橙子', '8.6', 'cd6567c1-eaeb-426f-b779-2877b558a6b2.jpg', '补充维C', '酸甜，季节水果', null, '', '', '1');
+INSERT INTO `product` VALUES ('13', '柠檬', '15', 'fe21b897-3286-483d-a72f-0cca04653025.jpg', '补充维C', '女孩子的最爱', null, '', '', '1');
+INSERT INTO `product` VALUES ('14', '香梨', '12', 'bf2cd7fa-4153-4099-bb28-867cdd963a00.jpg', '清脆', '解渴', null, '', '', '6');
 
 -- ----------------------------
--- Table structure for sorder
+-- Table structure for `sorder`
 -- ----------------------------
 DROP TABLE IF EXISTS `sorder`;
 CREATE TABLE `sorder` (
@@ -121,28 +128,27 @@ CREATE TABLE `sorder` (
   PRIMARY KEY (`id`),
   KEY `FKCA8ED6BB8F3F3845` (`pid`),
   CONSTRAINT `FKCA8ED6BB8F3F3845` FOREIGN KEY (`pid`) REFERENCES `product` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sorder
 -- ----------------------------
-INSERT INTO `sorder` VALUES ('1', '1', '夏季新品长裙', '79.00', '1', '3', null);
-INSERT INTO `sorder` VALUES ('2', '2', '夏季新品长裙', '79.00', '1', '3', null);
-INSERT INTO `sorder` VALUES ('3', '2', '夏季新品长裙', '99.00', '1', '2', null);
-INSERT INTO `sorder` VALUES ('4', '2', '夏季新品长裙', '99.00', '1', '2', null);
-INSERT INTO `sorder` VALUES ('5', '2', '夏季新品长裙', '99.00', '1', '2', null);
-INSERT INTO `sorder` VALUES ('6', '2', '夏季新品长裙', '79.00', '1', '3', null);
-INSERT INTO `sorder` VALUES ('7', '2', '夏季新品长裙', '99.00', '1', '2', null);
-INSERT INTO `sorder` VALUES ('8', '2', '夏季新品长裙', '99.00', '1', '2', null);
-INSERT INTO `sorder` VALUES ('9', '3', '夏季新品长裙', '76.00', '1', '1', null);
-INSERT INTO `sorder` VALUES ('10', '3', '夏季新品长裙', '99.00', '1', '2', null);
-INSERT INTO `sorder` VALUES ('11', '2', '夏季新品长裙', '76.00', '1', '1', null);
-INSERT INTO `sorder` VALUES ('12', '3', '夏季新品长裙', '79.00', '1', '3', null);
-INSERT INTO `sorder` VALUES ('13', '4', '夏季新品长裙', '99.00', '1', '2', null);
-INSERT INTO `sorder` VALUES ('14', '4', '夏季新品长裙', '99.00', '1', '2', null);
+INSERT INTO `sorder` VALUES ('16', '1', '西瓜', '10.00', '1', '4', null);
+INSERT INTO `sorder` VALUES ('17', '2', '柠檬', '15.00', '1', '13', null);
+INSERT INTO `sorder` VALUES ('18', '2', '草莓', '20.00', '1', '8', null);
+INSERT INTO `sorder` VALUES ('19', '3', '山竹', '69.00', '1', '11', null);
+INSERT INTO `sorder` VALUES ('20', '3', '草莓', '20.00', '1', '8', null);
+INSERT INTO `sorder` VALUES ('21', '3', '菠萝', '12.00', '1', '9', null);
+INSERT INTO `sorder` VALUES ('22', '3', '橙子', '8.60', '1', '12', null);
+INSERT INTO `sorder` VALUES ('23', '3', '柠檬', '15.00', '1', '13', null);
+INSERT INTO `sorder` VALUES ('24', '3', '草莓', '20.00', '1', '8', null);
+INSERT INTO `sorder` VALUES ('25', '3', '草莓', '20.00', '1', '8', null);
+INSERT INTO `sorder` VALUES ('26', '3', '菠萝', '12.00', '1', '9', null);
+INSERT INTO `sorder` VALUES ('27', '3', '草莓', '20.00', '1', '8', null);
+INSERT INTO `sorder` VALUES ('28', '3', '草莓', '20.00', '1', '8', null);
 
 -- ----------------------------
--- Table structure for status
+-- Table structure for `status`
 -- ----------------------------
 DROP TABLE IF EXISTS `status`;
 CREATE TABLE `status` (
@@ -157,7 +163,7 @@ CREATE TABLE `status` (
 INSERT INTO `status` VALUES ('1', '1');
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
