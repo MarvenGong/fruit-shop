@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<context:component-scan base-package="com.dzwz.shop.." />
+	
+	<!--加载 properties文件 -->
+	<bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:pay.properties</value>
+			</list>
+		</property>
+	</bean> 
+	
+	<!-- 配置jndi数据源 -->
+	<!--  <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/mydb"></property>
+	</bean>  -->
+	
+	<!-- 配置DataSource -->
+  <!--   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="root" />
+		<property name="password" value="123" />
+		<property name="jdbcUrl" value="jdbc:mysql:///shop?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property> 
+		<property name="initialPoolSize" value="10"></property>
+		<property name="maxPoolSize" value="50" />
+	</bean>  -->
+	
+	
+		<!-- 导入资源文件 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	<!-- 配置 C3P0 数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		
+		<property name="initialPoolSize" value="${jdbc.initPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+	</bean>
+
+	
+
+	<!-- 得到SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+		
+		<property name="mappingLocations" value="classpath:com/dzwz/shop/model/*.hbm.xml"></property>
+	</bean>
+	
+	<!-- 配置声明式事务 -->
+	<bean id="tranManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:advice id="advice" transaction-manager="tranManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/> 
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="*"  propagation="SUPPORTS"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.dzwz.shop.service.*.*(..))" id="pointcut"/>
+		<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
+	</aop:config>
+	
+	
+	<!-- 文件上传工具类 -->
+	<bean id="fileUpload" class="com.dzwz.shop.util.FileUploadUtil"></bean>
+	
+	
+	
+	
+	</beans>

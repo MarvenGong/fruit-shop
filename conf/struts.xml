@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <package name="struts" namespace="/" extends="json-default">
+		    <interceptors>
+		    	<interceptor name="login" class="com.dzwz.shop.Interceptor.LoginInterceptor" />
+		    	<interceptor-stack name="mystack">
+		    		<interceptor-ref name="defaultStack"></interceptor-ref>
+		    		<interceptor-ref name="login"></interceptor-ref>
+		    	</interceptor-stack>
+		    </interceptors>
+		<global-results>
+    		<result name="index">/index.jsp</result>
+    		<result name="loginFa">/ulogin.jsp</result>
+    		<result name="error">/error/error.jsp</result>
+    		
+    		<!-- 以流的形式返回 -->
+    		<result name="stream" type="stream">
+    		    <param name="inputStream">inputStream</param>
+    		</result>
+    	</global-results>
+    	<global-exception-mappings>
+    		<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+    	</global-exception-mappings> 
+		
+		<!-- 转发请求 -->
+    	<action name="send_*_*" class="sendAction">
+    		<result name="send">/WEB-INF/{1}/{2}.jsp</result>
+    	</action>
+    	
+    	</package>
+    	
+    	<!-- 品类 -->
+    	<package name="category" namespace="/" extends="struts">
+    	<!-- categoryAction -->
+    	<action name="category_*" class="categoryAction" method="{1}">
+    	    <!-- 以JSON格式返回并过滤敏感字段 -->
+    		<result name="categoryOk" type="json">
+    			<param name="root">resultMap</param>
+    			<param name="excludeProperties">
+					rows\[\d+]\.account\.pass,
+					
+				</param>
+    		</result>
+    		
+    		<!-- list json -->
+    		<result name="jsonlist" type="json">
+    			<param name="root">jsonList</param>
+    			<param name="excludeProperties">
+					\[\d+]\.account
+				</param>
+    		</result>
+    	</action>
+    	
+    </package>
+    
+    <!-- 用户 -->
+     <package name="user" namespace="/" extends="struts">
+     	
+    	<action name="user_*" class="userAction" method="{1}">
+    		<result name="goURL">${#session.goURL}</result>
+    		<result name="jsonlist" type="json">
+    			<param name="root">jsonList</param>
+    			<param name="excludeProperties">
+					\[\d+]\.pwd,\[\d+]\.phone,\[\d+]\.money
+				</param>
+    		</result>
+    	</action>
+    	<!-- 管理用户 -->
+    	<action name="account_*" class="accountAction" method="{1}">
+    		<result name="jsonlist" type="json">
+    			<param name="root">jsonList</param>
+    			<param name="excludeProperties">
+					\[\d+]\.pass
+				</param>
+    		</result>
+    	</action>
+    	
+    		
+     </package>
+    	
+    	
+    <!-- 商品 -->
+    <package name="prouct" namespace="/" extends="struts">
+    	
+    	<!-- 订单项 -->
+    	<action name="sorder_*" class="sorderAction" method="{1}">
+    		<result name="showCar" type="redirect">/showCar.jsp</result>
+    		<result name="jsonList" type="json"/>
+    	</action>
+    	
+    	
+    	<action name="search" class="productAction" method="search">
+			<result name="productinfo">/product/productinfo.jsp</result>    	
+    	</action>
+    	<!-- 购物车 -->
+    	<action name="forder_*" class="forderAction" method="{1}">
+    	
+    		<result name="bank"  type="redirect">/user/bank.jsp</result>
+    	</action>
+    	
+    	<!-- 支付 -->
+    	<action name="pay_*" class="payAction" method="{1}">
+    		<result name="pay" >/user/pay.jsp</result>
+    	</action>
+    	
+    	<!-- 后台商品管理模块 -->
+    	<action name="product_*" class="productAction" method="{1}">
+    		<result name="jsonSuccess" type="json">
+    			<param name="root">resultMap</param>
+    		</result>
+    		<result name="jsonSuccessNew" type="json">
+    		</result>
+    		<result name="detail">/detail.jsp</result>
+    	</action>
+    	<action name="product1_*" class="productAction" method="{1}">
+    		<result type="json"/>
+    	</action>
+    	
+    </package>
+    
+    
+</struts>    

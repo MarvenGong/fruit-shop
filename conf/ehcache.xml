@@ -1,0 +1,25 @@
+<ehcache>
+     
+  <!-- ehcache支持硬盘级缓存, 此处设置硬盘存储存储的目录, 查看的时候要显示隐藏文件 -->
+    <diskStore path="java.io.tmpdir"/>
+     
+     
+      <!-- <defaultCache
+            maxElementsInMemory="10000"    内存支持的最大数量
+            eternal="false"				        对象是否永久有效,建议为false,这样下面的两个参数才会有效
+            timeToIdleSeconds="60"		   对象间隔周期,默认单位为秒     设置当给定的值时间段内没有访问则提前销毁
+            timeToLiveSeconds="120"		   对象生命周期,默认单位为秒   
+            overflowToDisk="true"		 是否支持溢出到硬盘
+            memoryStoreEvictionPolicy="LRU"   对象替换策略
+            /> -->
+     
+     
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="30"
+            timeToLiveSeconds="60"
+            overflowToDisk="true"
+            memoryStoreEvictionPolicy="LFU"
+            />
+</ehcache>
