@@ -154,4 +154,10 @@ public class SorderServiceImpl extends BaseServiceImpl<Sorder> implements
 		return sorderDao.findSorderByUid(uid);
 	}
 
+	@Override
+	public boolean deleteById(int id) {
+		// TODO Auto-generated method stub
+		return sorderDao.removeById(id);
+	}
+
 }

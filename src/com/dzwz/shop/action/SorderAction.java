@@ -125,14 +125,15 @@ public class SorderAction extends BaseAction<Sorder> {
 		User user=(User) session.get("userInfo");
 		
 		int uid=user.getId();
-		System.out.println(uid);
+		//System.out.println(uid);
 		cartList=sorderService.getAllCartByUid(uid);
-		System.out.println(cartList);
+		//System.out.println(cartList);
 		request.put("cartList", cartList);
 		return "sorder_list";
 	}
 	public String delete(){
-	
+		//System.out.println(model);
+		sorderService.deleteById(model.getId());
 		return "add_success";
 	}
 

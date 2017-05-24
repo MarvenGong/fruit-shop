@@ -101,7 +101,7 @@
 						</td>
 						<td class="align_center vline"><span class="price">￥${sorder.price*sorder.number}</span>
 						</td>
-						<td class="align_center vline"><a href="javascript:void(0)" class="remove"></a>
+						<td class="align_center vline"><a href="/shop/sorder_delete.action?id=${sorder.id}" class="remove"></a>
 						</td>
 					</tr>
 					</c:forEach>
