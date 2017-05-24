@@ -79,10 +79,6 @@
     		</result>
     	</action>
     	<!-- register -->
-    	<!-- <action name="register.action" class="userAction" method="{1}">
-    		<result name="goURL">${#session.goURL}</result>
-    		
-    	</action> -->
     		
      </package>
     	
