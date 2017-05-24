@@ -10,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.dzwz.shop.model.Forder;
 import com.dzwz.shop.model.Product;
 import com.dzwz.shop.model.Sorder;
+import com.dzwz.shop.model.User;
 import com.opensymphony.xwork2.ActionContext;
 
 public class SorderAction extends BaseAction<Sorder> {
@@ -27,7 +28,7 @@ public class SorderAction extends BaseAction<Sorder> {
 	public String addsorder() {
 		// 1.根据product.id 获取 商品信息
 		Product product = productService.queryByid(model.getProduct().getId());
-		List<Forder> ff = productService.QueryJoinProduct1(null, 0, 999);
+		/*List<Forder> ff = productService.QueryJoinProduct1(null, 0, 999);
 		// 2.判断当前购物车是否存在,，没有则创建一个
 		session.put("forder", new Forder(ff.size() + 1));
 		Forder forder = (Forder) session.get("forder");
@@ -40,9 +41,33 @@ public class SorderAction extends BaseAction<Sorder> {
 		// forder = sorderService.addSorder(forder, product);
 		// 计算总价格
 		forder.setPrice(s.getPrice());
-		session.put("forder", forder);
-
-		return "showCar";
+		session.put("forder", forder);*/
+		if(session.get("userInfo")==null){
+			session.put("goURL", "/detail.jsp");
+			session.put("product", product);
+			return "loginFa";
+		}else{
+			User user=(User) session.get("userInfo");
+			int uid=user.getId();
+			int pid=model.getProduct().getId();
+			int number=1;
+			Sorder s=new Sorder();
+			s.setUid(uid);
+			s.setFid(5);
+			s.setProduct(product);
+			s.setNumber(number);
+			s.setName(product.getName());
+			s.setPrice(product.getPrice());
+			try {
+				sorderService.addCart(s);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+			return "add_success";
+		}
+		
 
 	}
 
@@ -92,6 +117,23 @@ public class SorderAction extends BaseAction<Sorder> {
 			throw new RuntimeException(e);
 		}
 		return "stream";
+	}
+	//get all cart
+	public String list(){
+		
+		List<Sorder> cartList=new ArrayList<Sorder>();
+		User user=(User) session.get("userInfo");
+		
+		int uid=user.getId();
+		System.out.println(uid);
+		cartList=sorderService.getAllCartByUid(uid);
+		System.out.println(cartList);
+		request.put("cartList", cartList);
+		return "sorder_list";
+	}
+	public String delete(){
+	
+		return "add_success";
 	}
 
 }

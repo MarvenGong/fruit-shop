@@ -25,14 +25,14 @@
 				 $("#total").text("￥"+ss+".0");
 				 });
 			  //减的效果
-			   $(".jian").click(function(){ 
-				   var n=$(this).next().val(); 
-				   var num=parseInt(n)-1; 
-				   if(num==0){ return} 
-				   $(this).next().val(num); 
-				   var ss=Number($("#price").val())*num;
-					 $("#total").text("￥"+ss+".0");
-				   });
+		   $(".jian").click(function(){ 
+			   var n=$(this).next().val(); 
+			   var num=parseInt(n)-1; 
+			   if(num==0){ return} 
+			   $(this).next().val(num); 
+			   var ss=Number($("#price").val())*num;
+				 $("#total").text("￥"+ss+".0");
+			   });
 		    //更改数量
 			$(".text").change(function(){
 			 var number = this.value;
@@ -71,7 +71,7 @@
 		<input type="hidden" id="price" value="${sessionScope.totalPrice}">
 			<!-- 购物车 -->
 			<div id="shopping_cart">
-				<div class="message success">我的购物车</div>
+				<div class="message success">我的购物车${cartList.size() }</div>
 				<table class="data-table cart-table" cellpadding="0" cellspacing="0">
 					<tr>
 						<th class="align_center" width="10%">商品编号</th>
@@ -82,7 +82,7 @@
 						<th class="align_center" width="10%">删除</th>
 					</tr>
 					
-					<c:forEach items="${sessionScope.sorder}" var = "sorder">
+					<c:forEach items="${cartList}" var = "sorder">
 					
 					<tr title="${sorder.product.id}">
 						<td class="align_center" ><a href="#" class="edit">${sorder.product.id}</a>

@@ -1,12 +1,9 @@
 package com.dzwz.shop.action;
 
 import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import com.dzwz.shop.model.User;
-import com.dzwz.shop.util.MassgeUtilImpl;
 
 public class UserAction extends BaseAction<User> {
 	
@@ -47,8 +44,12 @@ public class UserAction extends BaseAction<User> {
 	    	if(session.get("goURL")==null){
 	    		return "index";
 	    	}else{
+	    		if(session.get("product")!=null){
+	    			request.put("product",session.get("product") );
+	    		}
 	    		return "goURL";
 	    	}
+	    	
 	    }else{
 	    	request.put("error", "登录失败");
 	    	return "loginFa";
@@ -60,18 +61,8 @@ public class UserAction extends BaseAction<User> {
 	 */
 	public String register(){
 		//进行登录的判断
-	    //User  user= userService.login(model);
-	    /*if(user!=null){
-	    	session.put("userInfo", user);
-	    	if(session.get("goURL")==null){
-	    		return "index";
-	    	}else{
-	    		return "goURL";
-	    	}
-	    }else{
-	    	request.put("error", "登录失败");
-	    	return "loginFa";
-	    }*/
+		//System.out.println(model);
+		userService.addUser(model);
 		return "index";
 	}
 	/**

@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    </a>
 				</div>
             </div>
-            
+            ${session}
  
 			<c:forEach items="${applicationScope.proList}" var="list">
             <!-- 产品列表 -->
@@ -60,14 +60,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <h2 class="sub_title" >${list[0].cid.type}</h2>
                 <ul id="first-carousel" class="first-and-second-carousel jcarousel-skin-tango">
                 	<c:forEach items="${list}" var="product">
-                    <li> 
-                    <a  href="${shop}/product_queryByid?id=${product.id}" class="product_image"><img src="images/${product.pic}" /></a>
+                    <li class="home-pro"> 
+                    <a  href="${shop}/product_queryByid?id=${product.id}" class="product_image ">
+                    <img  src="images/${product.pic}" /></a>
                         <div class="product_info">
                             <h3><a href="#">${product.name}</a></h3>
                             <small>${product.remark}</small> 
                          </div>
                         <div class="price_info"> 
-      		                   <a href="sorder_addsorder?product.id=${product.id}"><button><span><img src="images/cart.png"></img></span></button></a>
+      		                   <a href="sorder_addsorder?product.id=${product.id}"><button><span>
+      		                   <img src="images/cart.png"></img>
+      		                   </span></button></a>
                            <button class="price_add" title="" type="button"><span class="pr_price">${product.price}</span></button>
                         </div>
                     </li>

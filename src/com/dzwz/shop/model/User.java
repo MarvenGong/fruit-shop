@@ -103,4 +103,11 @@ public class User implements java.io.Serializable {
 		this.ioc = ioc;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", login=" + login + ", name=" + name
+				+ ", pwd=" + pwd + ", sex=" + sex + ", phone=" + phone
+				+ ", email=" + email + ", ioc=" + ioc + "]";
+	}
+	
 }

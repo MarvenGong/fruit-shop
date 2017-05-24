@@ -91,6 +91,8 @@
 		<li>第三步：注册成功</li>
 	</ul> -->
 	   <fieldset id="fie-1">
+	   		<input type="hidden" name="ioc" value="2"/>
+	   		<input type="hidden" name="sex" value="2"/>
 			<p>用户名:</p><input type="text" value="marven" name="login" placeholder="user name" /> 
 		
 			<p>昵称:</p><input type="text" value="xiaoming" name="name" placeholder="user name" /> 
@@ -100,7 +102,7 @@
 			<p>再次输入密码:</p><input type="password" value="123456" name="cpwd" placeholder="Confirm Password" />
 		
 			<p>邮箱:</p><input type="email" value="1637077309@qq.com" name="email" placeholder="Email" />
-			
+			<p>手机号码:</p><input type="text" value="15696544221" name="phone" placeholder="Phone" />
 			<input type="submit" name="next" class="next action-button" id="next-2" value="注册" />
 	   </fieldset>
 	   <fieldset id="fie-2">

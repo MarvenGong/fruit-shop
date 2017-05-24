@@ -43,7 +43,7 @@
 			</h1>
 			<!-- 购物车 -->
 			<div class="minicart">
-				<a class="minicart_link" href="showCar.jsp"> <span class="item">
+				<a class="minicart_link" href="/shop/sorder_list.action"> <span class="item">
 						<b>${fn:length(sessionScope.sorder)}</b> 件/
 				</span> <span class="price"> <b>￥${sessionScope.totalPrice}</b>
 				</span>

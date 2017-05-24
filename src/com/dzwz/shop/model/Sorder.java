@@ -8,12 +8,18 @@ public class Sorder implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer fid;
 	private Product product;
 	private String name;
 	private Double price;
 	private Integer number;
+	private Integer uid;
+	
 
 	// Constructors
 
@@ -70,5 +76,20 @@ public class Sorder implements java.io.Serializable {
 	public void setFid(Integer fid) {
 		this.fid = fid;
 	}
+	
+	public Integer getUid() {
+		return uid;
+	}
 
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+
+	@Override
+	public String toString() {
+		return "Sorder [id=" + id + ", fid=" + fid + ", product=" + product
+				+ ", name=" + name + ", price=" + price + ", number=" + number
+				+ "]";
+	}
+	
 }

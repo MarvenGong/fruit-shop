@@ -11,19 +11,22 @@
             <generator class="identity" />
         </id>
           <property name="fid" type="java.lang.Integer">
-            <column name="fid" length="11" not-null="true" />
+            <column name="fid" length="11" not-null="false" />
         </property>
-        <many-to-one name="product" class="com.dzwz.shop.model.Product" fetch="select">
+        <many-to-one name="product" class="com.dzwz.shop.model.Product" lazy="false" fetch="join">
             <column name="pid" />
         </many-to-one>
         <property name="name" type="java.lang.String">
-            <column name="name" length="20" not-null="true" />
+            <column name="name" length="20" not-null="false" />
         </property>
         <property name="price" type="java.lang.Double">
-            <column name="price" precision="6" not-null="true" />
+            <column name="price" precision="6" not-null="false" />
         </property>
         <property name="number" type="java.lang.Integer">
             <column name="number" not-null="true" />
+        </property>
+        <property name="uid" type="java.lang.Integer">
+            <column name="uid" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

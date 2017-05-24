@@ -37,5 +37,15 @@ public class SorderDaoImpl extends BaseDaoIpml<Sorder> implements SorderDao {
 				.setMaxResults(size)
 				.list();
 	}
+	@Override
+	public List<Sorder> findSorderByUid(int uid) {
+		// TODO Auto-generated method stub
+		String hql ="FROM Sorder p WHERE p.uid=:uid";
+		/*List<Sorder> sorders = getSession().createSQLQuery("select * from sorder where uid="+uid).list();*/  
+		List<Sorder> sorders=getSession().createQuery(hql)
+				.setParameter("uid", uid)
+				.list();
+		return sorders;
+	}
 
 }

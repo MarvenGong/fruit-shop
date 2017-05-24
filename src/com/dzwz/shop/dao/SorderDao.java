@@ -18,5 +18,7 @@ public interface SorderDao extends BaseDao<Sorder> {
 	public List<Object> querySale(int number);
 
 	List<Sorder> QueryJoinProduct(String name, int page, int size);
+	
+	List<Sorder> findSorderByUid(int uid);
 
 }

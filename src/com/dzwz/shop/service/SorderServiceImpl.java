@@ -139,5 +139,19 @@ public class SorderServiceImpl extends BaseServiceImpl<Sorder> implements
 //		}
 		return forder;
 	}
+	
+	@Override
+	public boolean addCart(Sorder s) {
+		// TODO Auto-generated method stub
+		sorderDao.save(s);
+		return true;
+	}
+
+	@Override
+	public List<Sorder> getAllCartByUid(int uid) {
+		// TODO Auto-generated method stub
+		
+		return sorderDao.findSorderByUid(uid);
+	}
 
 }

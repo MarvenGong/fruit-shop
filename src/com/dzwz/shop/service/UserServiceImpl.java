@@ -1,9 +1,5 @@
 package com.dzwz.shop.service;
 
-
-
-
-
 import com.dzwz.shop.dao.BaseDao;
 import com.dzwz.shop.dao.UserDao;
 import com.dzwz.shop.model.Category;
@@ -22,6 +18,15 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	public User login(User user){
 		User result = userDao.QueryUser(user);
 		return result;
+	}
+
+
+
+	@Override
+	public boolean addUser(User user) {
+		// TODO Auto-generated method stub
+		userDao.save(user);
+		return true;
 	}
 
 	

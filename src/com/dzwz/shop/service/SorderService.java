@@ -57,4 +57,7 @@ public interface SorderService extends BaseService<Sorder> {
 	 * @return
 	 */
 	public Forder removeSorder(Forder forder, Sorder sorder);
+	
+	public List<Sorder> getAllCartByUid(int uid);
+	public boolean addCart(Sorder s);
 }
