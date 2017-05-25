@@ -77,5 +77,13 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements
 		productDao.deleteByids(ids);
 	}
 
+
+
+	@Override
+	public boolean modifyProduct(Product p) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 }

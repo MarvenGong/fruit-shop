@@ -146,10 +146,10 @@ $(function(){
 	//将普通的文本框转化为搜索文本框
 	$('#query').searchbox({
 		//触发当前事件
-		searcher:function(value,name){
+		searcher:function(name){
 			//获取查询关键字,通过dg加载
 			$('#dg').datagrid('load',{
-				type: value
+				name: name
 			});
 		}, 
 		prompt:'名称'     //缺省值

@@ -13,6 +13,8 @@
   </head>
   <body>
   <form title="编辑商品" id="ff" method="post" enctype="multipart/form-data">
+  <input type="text" name="id" />
+  <input type="text" name="pic" />
 	<div>
 		<label>商品名称:</label> <input type="text" name="name" />
 	</div>
@@ -24,7 +26,7 @@
 	</div>
 	<div>
 		<label>所属类别：</label> 
-		<input id="cc" name="cid.id" />
+		<input type="text" id="cc" name="cid.id" />
 		
 	</div>
 	<div>
@@ -34,7 +36,7 @@
 	</div>
 	<div>
 		<label>是否有效:</label>
-		上架:<input type="radio" name="open" checked="checked"value="true" />
+		上架:<input type="radio" name="open" checked="checked" value="true" />
 		下架:<input type="radio" name="open" value="false" />
 				
 	</div>

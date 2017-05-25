@@ -1,7 +1,6 @@
 package com.dzwz.shop.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Product entity. @author MyEclipse Persistence Tools

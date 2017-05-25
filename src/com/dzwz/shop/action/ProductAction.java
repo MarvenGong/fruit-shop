@@ -42,7 +42,7 @@ public class ProductAction extends BaseAction<Product> {
 			//resultMap.put("rows", list);
 			//resultMap.put("total", productService.totalCategory(model.getName()));
 			//Long total=Long.valueOf(productService.totalCategory(model.getName()));
-			return responseData(Long.valueOf(productService.totalCategory1(model
+			return responseData(Long.valueOf(productService.totalCategory(model
 					.getName())), list);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,7 +137,7 @@ public class ProductAction extends BaseAction<Product> {
 	 * @version v.0.1
 	 */
 	public void update() {
-		System.out.println(model);
+		System.out.println("product update "+model);
 		productService.update(model);
 
 	}

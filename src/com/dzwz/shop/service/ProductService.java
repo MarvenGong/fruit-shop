@@ -19,5 +19,8 @@ public interface ProductService extends BaseService<Product> {
 		
 		//根据ids删除
 		public void deleteByids(String ids);
+		
+		//编辑产品信息
+		public boolean modifyProduct(Product p);
 	
 }

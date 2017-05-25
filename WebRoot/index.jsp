@@ -52,7 +52,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    </a>
 				</div>
             </div>
-            ${session}
  
 			<c:forEach items="${applicationScope.proList}" var="list">
             <!-- 产品列表 -->

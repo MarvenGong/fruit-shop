@@ -105,4 +105,11 @@ public class ProductDaoImpl extends BaseDaoIpml<Product> implements ProductDao {
 				.list(); //
 	}
 
+	@Override
+	public boolean modifyProduct(Product p) {
+		// TODO Auto-generated method stub
+		getSession().update(p);
+		return true;
+	}
+
 }

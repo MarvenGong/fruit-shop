@@ -20,6 +20,7 @@ $(function(){
 			var rows = dg.datagrid("getSelections");
 			$('#ff').form('load',{
 				id:rows[0].id,
+				pic:rows[0].pic,
 				name:rows[0].name,
 				price:rows[0].price,
 				remark:rows[0].remark,
@@ -42,11 +43,11 @@ $(function(){
     			if($("#ff").form("validate")){
 		    		//调用submit方法
 		    		$('#ff').form('submit', {
-						url: "category_update.action",
+						url: "product1_update.action",
 						success: function(){
-						//关闭Window
-						parent.$("#win").window("close");
-					  	dg.datagrid("reload");
+							//关闭Window
+							parent.$("#win").window("close");
+						  	dg.datagrid("reload");
 						}
 					});
     		    }

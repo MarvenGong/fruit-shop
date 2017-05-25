@@ -10,7 +10,7 @@
 			<div class="welcom fl">欢迎光临小然水果商城!</div>
 			<ul class="top_links fr">
 				<li class="highlight"><a href="index.jsp">首页</a></li>
-				<li><a href="#">我的账户</a></li>
+				<!-- <li><a href="#">我的账户</a></li> -->
 				<li><a href="/shop/sorder_list.action">购物车</a></li>
 				<c:choose>
 					<c:when test="${empty sessionScope.userInfo}">
@@ -18,7 +18,7 @@
 						<li><a href="ulogin.jsp">登录</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="user/orderInfo.jsp">${userInfo.name}</a></li>
+						<li><a href="#">${userInfo.name}</a></li>
 						<li><a href="user_logout">退出</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -44,14 +44,14 @@
 			<!-- 购物车 -->
 			<div class="minicart">
 				<a class="minicart_link" href="/shop/sorder_list.action"> <span class="item">
-						<b class="js-header-cart-number"></b> 件/
-				</span> <span class="price"> <b class="js-header-cart-price"></b>
+						<b class="js-header-cart-number">0</b> 件/
+				</span> <span class="price"> <b class="js-header-cart-price">￥0</b>
 				</span>
 				</a>
 			</div>
 			<!-- 购物车结束 -->
 			<!-- 搜索框 -->
-			<div class="header_search">
+			<div class="header_search" style="height:auto">
 				<div class="form-search ">
 					<form action="search" method="get">
 					<input value="请输入商品名称" name="q" class="input-text" type="text" />
@@ -67,50 +67,21 @@
 	<!---->
 	<div class="nav">
 		<ul class="primary_nav" style="padding-left:180px; ">
-			<li class="active highlight"><a href="#">应季水果</a> <!--二级菜单-->
+		<c:forEach items="${applicationScope.proList}" var="list">
+		
+		<li class="highlight"><a href="#">${list[0].cid.type}</a>
 				<ul class="sub_menu">
-					<li><a href="#">百香果</a>
+					<li>
 						<ul>
-							<li><a href="#">菠萝</a></li>
-							<li><a href="#">草莓 </a></li>
-							<li><a href="#">橙·柚·柑</a></li>
-							<li><a href="#">瓜类</a></li>
-							<li><a href="#">龙眼</a></li>
-							<li><a href="#">芒果</a></li>
-							<li><a href="#">鲜枣</a></li>
-							<li><a href="#">椰子</a></li>
-							<li><a href="#">柠檬</a></li>
-							<li><a href="#">其他</a></li>
+						<c:forEach items="${list}" var="product">
+							<li><a href="${shop}/product_queryByid?id=${product.id}">${product.name }</a></li>
+							</c:forEach>
 						</ul></li>
 
 				</ul></li>
 			<!--二级菜单结束-->
-
-			<li><a href="#">进口水果</a> <!--二级菜单-->
-				<ul class="sub_menu">
-					<li><a href="#">蛇皮果</a>
-						<ul>
-							<li><a href="#">凤梨</a></li>
-							<li><a href="#">蓝莓</a></li>
-							<li><a href="#">奇异果</a></li>
-							<li><a href="#">山竹</a></li>
-							<li><a href="#">榴莲</a></li>
-						</ul>
-					</li>
-				</ul> <!--二级菜单结束--></li>
-<!--			<li><a href="#">儿童</a></li>
-			<li><a href="#">时尚</a></li> -->
-			<li><a href="#">越来越美 </a>
-				<ul class="sub_menu">
-					<li><a href="#">速冻水果 </a>
-						<ul>
-							<li><a href="#">水果色拉</a></li>
-							<li><a href="#">VC乐园</a></li>
-							<li><a href="#">花青素 </a></li>
-						</ul>
-					</li>
-				</ul>
-			</li>
+		</c:forEach>
+			
 		</ul>
 	</div>
 </div>
@@ -126,5 +97,20 @@
 			$(".js-header-cart-number").text(res.cartLength);
 			$(".js-header-cart-price").text("￥"+res.totalPrice);
 		}
-	})
+	});
+	/* $.ajax({
+		url:"/shop/category_quercategory.action",
+		data:{},
+		dataType:"json",
+		type:"get",
+		success:function(res){
+			console.log(res);
+			for(var i=0;i<res.length;i++){
+				var type=res[i].type;
+				var id=res[i].id;
+				var _html='<li data-id="'+id+'" class="highlight"><a href="#">'+type+'</a></li>';
+				$(".primary_nav").append(_html);
+			}
+		}
+	}) */
 </script>
