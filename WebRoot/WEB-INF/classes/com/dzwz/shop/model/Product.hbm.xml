@@ -39,7 +39,7 @@
         </property> -->
         
         <!-- 配置多对一关系 -->
-       <many-to-one name="cid" class="Category">
+       <many-to-one name="cid" class="Category" lazy="false" fetch="join">
        		<column name="cid" />
        </many-to-one>
         

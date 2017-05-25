@@ -3,7 +3,6 @@ package com.dzwz.shop.service;
 
 import com.dzwz.shop.dao.ForderDao;
 import com.dzwz.shop.model.Forder;
-import com.dzwz.shop.model.Sorder;
 
 
 public class ForderServiceImpl extends BaseServiceImpl<Forder> implements
@@ -42,6 +41,14 @@ public class ForderServiceImpl extends BaseServiceImpl<Forder> implements
 	@Override
 	public void updateForder(int uid, int sid) {
 		forderDao.updateForder(uid, sid);
+	}
+
+
+	@Override
+	public Forder getNewForder() {
+		// TODO Auto-generated method stub
+		return forderDao.getNewForder();
+		
 	}
 	
 }

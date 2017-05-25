@@ -23,7 +23,10 @@
 				 $(this).prev().val(num); 
 				 var ss=Number($("#price").val())*num;
 				 $("#total").text("￥"+ss+".0");
-				 });
+				 var _id=$(this).attr("data-id");
+				  window.location.href="/shop/sorder_setNumber?id="+_id+"&number="+num;
+			});
+				
 			  //减的效果
 		   $(".jian").click(function(){ 
 			   var n=$(this).next().val(); 
@@ -32,7 +35,10 @@
 			   $(this).next().val(num); 
 			   var ss=Number($("#price").val())*num;
 				 $("#total").text("￥"+ss+".0");
-			   });
+				 var _id=$(this).attr("data-id");
+				  window.location.href="/shop/sorder_setNumber?id="+_id+"&number="+num;
+			});
+			  
 		    //更改数量
 			$(".text").change(function(){
 			 var number = this.value;
@@ -57,6 +63,11 @@
 		   		 	$("#total").html(price);
 		   		 },"text");
 		   		console.log("aa");
+		   });
+		   $(".js-btn-empty-cart").click(function(){
+			  if(confirm("确定要清空购物车中的宝贝吗？")){
+				  window.location.href="/shop/sorder_deleteAll";
+			  } 
 		   });
 		   
 		
@@ -95,11 +106,11 @@
 						<td class="align_center vline">${sorder.price}
 						</td>
 						<td class="align_center vline">
-							<em class="jian">-</em>
-							<input class="text" style="height: 20px;" title="${sorder.number}" value="${sorder.number}" readonly="readonly">		
-							<em class="add">+</em>
+							<em class="jian" data-id="${sorder.id }">-</em>
+							<input readonly class="text" style="height: 20px;" title="${sorder.number}" value="${sorder.number}" readonly="readonly">		
+							<em class="add" data-id="${sorder.id }">+</em>
 						</td>
-						<td class="align_center vline"><span class="price">￥${sorder.price*sorder.number}</span>
+						<td class="align_center vline"><span class="price">￥${sorder.price/1*sorder.number/1}</span>
 						</td>
 						<td class="align_center vline"><a href="/shop/sorder_delete.action?id=${sorder.id}" class="remove"></a>
 						</td>
@@ -119,7 +130,7 @@
 							<tr>
 								<td width="60%" colspan="1" class="align_left total"><strong>总计</strong>
 								</td>
-								<td class="align_right" style=""><span class="total"><strong id="total">￥${sessionScope.totalPrice}</strong>
+								<td class="align_right" style=""><span class="total"><strong id="total">￥${totalPrice}</strong>
 								</span>
 								</td>
 							</tr>
@@ -127,20 +138,22 @@
 					</table>
 					</div>
 					<div class="action_buttonbar">
-						<a href="${shop}/user/confirm.jsp">
+						<c:if test="${cartList.size()!=0}">
+						<a href="${shop}/sorder_confirmOrder">
 						<button type="button" title="" class="checkout fr"
 							style="background-color: #f38256;">
 							<font>确认订单</font>
 						</button>
 						</a>
-						<button type="button" title="" class=" fr">
+						<button type="button" title="" class="js-btn-empty-cart fr">
 							<font><font>清空购物车</font>
 							</font>
 						</button>
+						</c:if>
 						<a href="${shop}/index.jsp">
 						<button type="button" title="" class="continue fr">
 							<font>
-								继续购物
+								 继续购物
 							</font>
 						</button>
 						</a>

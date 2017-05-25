@@ -56,5 +56,17 @@ public class SorderDaoImpl extends BaseDaoIpml<Sorder> implements SorderDao {
 		getSession().delete(sorders.get(0));
 		return true;
 	}
+	@Override
+	public boolean deleteAll(int uid) {
+		// TODO Auto-generated method stub
+		String hql ="FROM Sorder p WHERE p.uid=:uid";
+		List<Sorder> sorders = getSession().createQuery(hql)
+		.setParameter("uid", uid).list();
+		for(int i=0;i<sorders.size();i++){
+			getSession().delete(sorders.get(i));
+		}
+		
+		return true;
+	}
 
 }

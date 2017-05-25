@@ -160,4 +160,20 @@ public class SorderServiceImpl extends BaseServiceImpl<Sorder> implements
 		return sorderDao.removeById(id);
 	}
 
+	@Override
+	public boolean modifyNumberById(int id, int number) {
+		// TODO Auto-generated method stub
+		Sorder s=sorderDao.queryByid(id);
+		s.setNumber(number);
+		sorderDao.update(s);
+		return true;
+	}
+
+	@Override
+	public boolean deleteAllSorder(int uid) {
+		// TODO Auto-generated method stub
+		sorderDao.deleteAll(uid);
+		return false;
+	}
+
 }

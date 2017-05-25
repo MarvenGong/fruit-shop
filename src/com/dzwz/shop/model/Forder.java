@@ -1,10 +1,5 @@
 package com.dzwz.shop.model;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Forder entity. @author MyEclipse Persistence Tools
@@ -30,12 +25,12 @@ public class Forder implements java.io.Serializable {
 		this.user = user;
 	}
 
-	private String status;
+	private int status;
 	private String name;
 	private String phone;
 	private String remak;
 	private Double price;
-	private Date createdate;
+	private String createdate;
 	private String post;
 	private String address;
 
@@ -63,11 +58,12 @@ public class Forder implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public String getStatus() {
-		return this.status;
+
+	public int getStatus() {
+		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
@@ -103,11 +99,11 @@ public class Forder implements java.io.Serializable {
 		this.price = price;
 	}
 
-	public Date getCreatedate() {
+	public String getCreatedate() {
 		return this.createdate;
 	}
 
-	public void setCreatedate(Date createdate) {
+	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
 	}
 

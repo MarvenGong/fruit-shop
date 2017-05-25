@@ -152,7 +152,7 @@ $(function(){
 				type: value
 			});
 		}, 
-		prompt:'女装'     //缺省值
+		prompt:'名称'     //缺省值
 		}); 
 	
 	

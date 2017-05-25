@@ -1,5 +1,6 @@
 package com.dzwz.shop.action;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,42 +26,23 @@ public class ForderAction extends BaseAction<Forder> {
 	 * 
 	 */
 	public String save() {
-		/*
-		 * Forder forder = (Forder) session.get("forder");
-		 * model.setSorders(forder.getSorders());
-		 * model.setPrice(forder.getPrice());
-		 * model.setUser((User)session.get("userInof")); //建立与购物项的关联
-		 * forderService.save(model);
-		 */
-		/******************************************************/
-		// 重写getModel从session中的的到 装配好的 购物车的方式
-		/*
-		 * User user = (User)session.get("userInfo"); model.setUser(user);
-		 * model.setStatus(new Status(1)); forderService.save(model);
-		 */
-		Forder forder = (Forder) session.get("forder");
-		forder.setAddress("test");
-		forder.setName("user");
-		forder.setPost(model.getAddress());
-		forder.setPost(model.getPost());
-		forder.setPhone(model.getPhone());
-		forder.setRemak(model.getRemak());
-		forder.setStatus("1");
-		forder.setUser("buyer");
-		forder.setPrice(Double.valueOf(session.get("totalPrice").toString()));
-		try {
-			forderService.save(forder);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// 购物车 另存
-		session.put("oldForder", forder);
-		// 清空购物车
-		session.put("forder", new Forder());
-
+		model.setStatus(1);
+		model.setCreatedate(String.valueOf(new Date().getTime()));
+		forderService.save(model);
+		
+		return "success";
+	}
+	public String pay(){
+		//forderService.save
+		//订单生成成功，清空购物车
+		User user=(User) session.get("userInfo");
+		int uid=user.getId();
+		sorderService.deleteAllSorder(uid);
+		//获取刚刚生成的订单信息
+		Forder forder=forderService.getNewForder();
+		request.put("forder", forder);
 		return "bank";
 	}
-
 	public String productManage1() {
 		try {
 			resultMap = new HashMap<String, Object>();

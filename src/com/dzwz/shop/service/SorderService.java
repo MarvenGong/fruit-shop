@@ -62,4 +62,8 @@ public interface SorderService extends BaseService<Sorder> {
 	public boolean addCart(Sorder s);
 	
 	public boolean deleteById(int id);
+	
+	public boolean modifyNumberById(int id,int number);
+	
+	public boolean deleteAllSorder(int uid);
 }

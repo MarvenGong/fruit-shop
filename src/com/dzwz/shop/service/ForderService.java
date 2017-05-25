@@ -18,4 +18,8 @@ public interface ForderService extends BaseService<Forder> {
 		 * @param sid
 		 */
 		public void updateForder(int uid,int sid);
+		/**
+		 * 
+		 */
+		public Forder getNewForder();
 }

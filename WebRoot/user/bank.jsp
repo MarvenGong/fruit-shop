@@ -36,11 +36,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="person-check check">
                     <h1>您的订单已经生成</h1>
                     <div class="person-checkinner">
-                        <div><span>订单号</span>：<span>${sessionScope.oldForder.id}</span></div>
-                        <div><span>收货人</span>：<span>${sessionScope.oldForder.name}</span></div>
-                        <div><span>送货地址</span>：<span>${sessionScope.oldForder.address}</span></div>
-                        <div><span>邮政编码</span>：<span>${sessionScope.oldForder.post}</span></div>
-                        <div><span>支付金额</span>：<span>${sessionScope.oldForder.price}</span></div>
+                        <div><span>订单号</span>：<span>${forder.id}</span></div>
+                        <div><span>收货人</span>：<span>${forder.name}</span></div>
+                        <div><span>送货地址</span>：<span>${forder.address}</span></div>
+                        <div><span>邮政编码</span>：<span>${forder.post}</span></div>
+                        <div><span>支付金额</span>：<span>${forder.price}</span></div>
                     </div>
                 </div>
                 <div class="pay">

@@ -22,5 +22,7 @@ public interface SorderDao extends BaseDao<Sorder> {
 	List<Sorder> findSorderByUid(int uid);
 	
 	boolean removeById(int id);
+	
+	boolean deleteAll(int uid);
 
 }

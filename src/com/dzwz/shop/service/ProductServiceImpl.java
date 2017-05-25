@@ -2,6 +2,7 @@ package com.dzwz.shop.service;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import com.dzwz.shop.dao.ProductDao;
 import com.dzwz.shop.model.Forder;
 import com.dzwz.shop.model.Product;
@@ -28,7 +29,12 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements
 	
 	@Override
 	public List<Product> QueryJoinProduct(String name, int page, int size) {
-		return productDao.QueryJoinProduct(name, page, size);
+		List<Product> datas = productDao.QueryJoinProduct(name, page, size);
+		
+		/*System.out.println("===============");
+		System.out.println(JSON.toJSONString(datas));*/
+		
+		return datas;
 	}
 	/**
 	 * 

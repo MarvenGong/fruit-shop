@@ -5,17 +5,20 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.json.annotations.JSON;
 
 import com.dzwz.shop.model.Forder;
 import com.dzwz.shop.model.Product;
 import com.google.gson.Gson;
 
 public class ProductAction extends BaseAction<Product> {
-
+	Map<String,Object> resultMap;
+	private String key = "product";
 	/**
 	 * 
 	 */
@@ -31,27 +34,20 @@ public class ProductAction extends BaseAction<Product> {
 
 	public String productManage() {
 
-		resultMap = new HashMap<String, Object>();
-		List<Product> list = productService.QueryJoinProduct(model.getName(),
-				page, rows);
-		System.out.println(list);
-		resultMap.put("rows", list);
-		resultMap.put("total",productService.totalCategory(model.getName()));
-		return "jsonSuccess";
-		/*try {
-			resultMap = new HashMap<String, Object>();
+		try {
+			//resultMap = new HashMap<String, Object>();
 			List<Product> list = productService.QueryJoinProduct(model.getName(),
 					page, rows);
 			System.out.println(list);
-			resultMap.put("rows", list);
-			resultMap.put("total", productService.totalCategory(model.getName()));
-			System.out.println(list);
-			Long total=Long.valueOf(productService.totalCategory(model.getName()));
-			return responseData(Long.valueOf(2), list);
+			//resultMap.put("rows", list);
+			//resultMap.put("total", productService.totalCategory(model.getName()));
+			//Long total=Long.valueOf(productService.totalCategory(model.getName()));
+			return responseData(Long.valueOf(productService.totalCategory1(model
+					.getName())), list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "jsonSuccessNew";*/
+		return "jsonSuccessNew";
 	}
 
 	public String productManage1() {
@@ -76,16 +72,23 @@ public class ProductAction extends BaseAction<Product> {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		if (resultList != null && resultList.size() > 0 && resultTotal != null
 				&& !"0".equals(resultTotal)) {
-			net.sf.json.JSONArray jsonArray = net.sf.json.JSONArray
-					.fromObject(resultList);
+			
+			String string = com.alibaba.fastjson.JSON.toJSONString(resultList);
+			
+			System.out.println(string);
+			
+			// net.sf.json.JSONArray jsonArray = net.sf.json.JSONArray.fromObject(resultList);
+			/*msg = "{\"total\":" + String.valueOf(resultTotal) + ",\"rows\":"
+					+ jsonArray.toString() + "}";*/
+			
 			msg = "{\"total\":" + String.valueOf(resultTotal) + ",\"rows\":"
-					+ jsonArray.toString() + "}";
+					+ string + "}";
 		} else {
 			msg = "{\"total\":" + "0" + ",\"rows\":" + "[]" + "}";
 		}
 		try {
 			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html");
+			response.setContentType("text/json");
 			response.getWriter().print(msg);
 		} catch (IOException e) {
 
@@ -192,5 +195,14 @@ public class ProductAction extends BaseAction<Product> {
 		return "productinfo";
 
 	}
+	public Map<String, Object> getResultMap() {  
+        return resultMap;  
+    }  
+  
+    //设置key属性不作为json的内容返回  
+    @JSON(serialize=false)  
+    public String getKey() {  
+        return key;  
+    }  
 
 }

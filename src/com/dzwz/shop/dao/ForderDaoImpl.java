@@ -1,5 +1,7 @@
 package com.dzwz.shop.dao;
 
+import java.util.List;
+
 import com.dzwz.shop.model.Forder;
 
 public class ForderDaoImpl extends BaseDaoIpml<Forder> implements ForderDao {
@@ -17,6 +19,15 @@ public class ForderDaoImpl extends BaseDaoIpml<Forder> implements ForderDao {
 			.setInteger("sid", sid)     //
 			.executeUpdate();
 		
+	}
+
+	@Override
+	public Forder getNewForder() {
+		// TODO Auto-generated method stub
+		String haql = "FROM Forder f ORDER BY f.createdate DESC";
+		List<Forder> forders=getSession().createQuery(haql).list();
+		
+		return forders.get(0);
 	}
 	
 }

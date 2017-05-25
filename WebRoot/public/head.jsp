@@ -11,7 +11,7 @@
 			<ul class="top_links fr">
 				<li class="highlight"><a href="index.jsp">首页</a></li>
 				<li><a href="#">我的账户</a></li>
-				<li><a href="showCar.jsp">购物车</a></li>
+				<li><a href="/shop/sorder_list.action">购物车</a></li>
 				<c:choose>
 					<c:when test="${empty sessionScope.userInfo}">
 						<li><a href="register.jsp">注册</a></li>
@@ -44,8 +44,8 @@
 			<!-- 购物车 -->
 			<div class="minicart">
 				<a class="minicart_link" href="/shop/sorder_list.action"> <span class="item">
-						<b>${fn:length(sessionScope.sorder)}</b> 件/
-				</span> <span class="price"> <b>￥${sessionScope.totalPrice}</b>
+						<b class="js-header-cart-number"></b> 件/
+				</span> <span class="price"> <b class="js-header-cart-price"></b>
 				</span>
 				</a>
 			</div>
@@ -115,3 +115,16 @@
 	</div>
 </div>
 <!-- 导航 栏结束 -->
+<script>
+	$.ajax({
+		url:"/shop/sorder_ajaxList",
+		data:{},
+		dataType:"json",
+		type:"get",
+		success:function(res){
+			console.log(res);
+			$(".js-header-cart-number").text(res.cartLength);
+			$(".js-header-cart-price").text("￥"+res.totalPrice);
+		}
+	})
+</script>

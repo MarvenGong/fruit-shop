@@ -19,9 +19,9 @@ public class ProductDaoImpl extends BaseDaoIpml<Product> implements ProductDao {
 	 */
 	@Override
 	public List<Product> QueryJoinProduct(String name, int page, int size) {
-
+		//LEFT JOIN FETCH p.cid
 		// 迫切左外连接
-		String hql = "FROM Product p LEFT JOIN FETCH p.cid WHERE p.name  like :name";
+		String hql = "FROM Product p WHERE p.name  like :name";
 		return getSession().createQuery(hql)
 				.setString("name", "%" + name + "%").setFirstResult(
 						(page - 1) * size).setMaxResults(size).list();
