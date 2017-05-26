@@ -13,17 +13,17 @@
   </head>
   <body>
   <form title="编辑商品" id="ff" method="post" enctype="multipart/form-data">
-  <input type="text" name="id" />
-  <input type="text" name="pic" />
+  <input type="hidden" name="id" />
+  <input type="hidden" name="pic" />
 	<div>
 		<label>商品名称:</label> <input type="text" name="name" />
 	</div>
 	<div>
 		<label>商品价格:</label> <input type="text" name="price" />
 	</div>
-	<div>
+	<!-- <div>
 		<label>图片上传:</label> <input type="file" name="fileImage.upload" />
-	</div>
+	</div> -->
 	<div>
 		<label>所属类别：</label> 
 		<input type="text" id="cc" name="cid.id" />

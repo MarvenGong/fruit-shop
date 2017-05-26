@@ -42,8 +42,8 @@
  			<ul>
 							<li><a href="#" title="send_product_manage.action">商品管理</a></li>
 							<li><a href="#" title="send_category_manage.action">类别管理</a></li>
- 			  				<li><a href="#" title="send_usermanage_saler.action">卖家管理</a></li>
- 			  				<li><a href="#" title="send_usermanage_buyer.action">买家管理</a></li>
+ 			  				<!-- <li><a href="#" title="send_usermanage_saler.action">卖家管理</a></li> -->
+ 			  				<!-- <li><a href="#" title="send_usermanage_buyer.action">买家管理</a></li> -->
  			  				<li><a href="#" title="send_usermanage_order.action">订单管理</a></li>
  		    </ul>
 		</div>

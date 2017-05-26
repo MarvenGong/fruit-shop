@@ -46,6 +46,8 @@ public class BaseServiceImpl<T> implements BaseService<T>{
 
 	@Override
 	public void update(T t) {
+		
+		System.out.println(t.getClass().getName());
 		baseDao.update(t);
 	}
 

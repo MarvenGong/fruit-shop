@@ -37,15 +37,12 @@ public class Product implements java.io.Serializable {
 		this.date = date;
 	}
 
-	
-	
-	
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price
 				+ ", pic=" + pic + ", remark=" + remark + ", xremark="
 				+ xremark + ", date=" + date + ", commend=" + commend
-				+ ", open=" + open + "]";
+				+ ", open=" + open + ", cid=" + cid + "]";
 	}
 
 	/** full constructor */

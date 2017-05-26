@@ -42,7 +42,7 @@ $(function(){
 				}else{
 					//parent 父级
 					parent.$('#win').window({    
-					    title:'编辑类别',
+					    title:'编辑商品信息',
 					    //引入插入页面
 						content:'<iframe src="send_product_update.action" frameborder="0"  width="100%" height="100%"></iframe>'
 					}); 

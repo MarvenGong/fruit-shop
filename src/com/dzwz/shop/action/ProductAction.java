@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.annotations.JSON;
 
+import com.alibaba.fastjson.JSONArray;
+import com.dzwz.shop.model.Category;
 import com.dzwz.shop.model.Forder;
 import com.dzwz.shop.model.Product;
 import com.google.gson.Gson;
@@ -73,16 +75,20 @@ public class ProductAction extends BaseAction<Product> {
 		if (resultList != null && resultList.size() > 0 && resultTotal != null
 				&& !"0".equals(resultTotal)) {
 			
-			String string = com.alibaba.fastjson.JSON.toJSONString(resultList);
+			//String string = com.alibaba.fastjson.JSON.toJSONString(resultList);
 			
-			System.out.println(string);
+			JSONArray array = new JSONArray();
+			
+			for(int index = 0; index < resultList.size(); index ++){
+				array.add( com.alibaba.fastjson.JSON.parseObject(com.alibaba.fastjson.JSON.toJSONString(resultList.get(index))));
+			}
 			
 			// net.sf.json.JSONArray jsonArray = net.sf.json.JSONArray.fromObject(resultList);
 			/*msg = "{\"total\":" + String.valueOf(resultTotal) + ",\"rows\":"
 					+ jsonArray.toString() + "}";*/
 			
 			msg = "{\"total\":" + String.valueOf(resultTotal) + ",\"rows\":"
-					+ string + "}";
+					+ array.toString() + "}";
 		} else {
 			msg = "{\"total\":" + "0" + ",\"rows\":" + "[]" + "}";
 		}
@@ -137,8 +143,34 @@ public class ProductAction extends BaseAction<Product> {
 	 * @version v.0.1
 	 */
 	public void update() {
-		System.out.println("product update "+model);
-		productService.update(model);
+		//System.out.println("product update "+model);
+		if(null != model.getId()){
+			Product that = productService.queryByid(model.getId());
+			
+			if(null != that){
+				
+				that.setName(model.getName());
+				that.setPrice(model.getPrice());
+				that.setPic(model.getPic());
+				that.setRemark(model.getRemark());
+				that.setXremark(model.getXremark());
+				if(null != model.getDate()){
+					that.setDate(model.getDate());
+				}
+				
+				that.setCommend(model.getCommend());
+				that.setOpen(model.getOpen());
+				
+				if(null != model.getCid() && null != model.getCid().getId()){
+					Category category = categoryService.queryByid( model.getCid().getId());
+					
+					that.setCid(category);
+				}
+				
+				productService.update(that);
+			}
+		}
+		
 
 	}
 

@@ -36,7 +36,10 @@ public  class BaseDaoIpml<T> implements BaseDao<T> {
 
 	@Override
 	public void update(T t) {
-		getSession().update(t);
+		//getSession().update(t);
+		this.getSession().merge(t);
+		
+		System.out.println(t.toString());
 	}
 
 	@Override
